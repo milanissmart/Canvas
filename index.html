@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Secret Browser</title>
+  <style>
+    body {
+      background-color: red;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 100px 300px;
+    }
+
+    .button1, .button2, .button3 {
+      margin: 20px;
+      padding: 15px 30px;
+      font-size: 18px;
+      background-color: white;
+      color: red;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .button1:hover, .button2:hover, .button3:hover {
+      background-color: blue;
+      transform: scale(1.05);
+    }
+
+    #browserArea {
+      display: none;
+      margin-top: 40px;
+    }
+
+    input {
+      width: 60%;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    iframe {
+      margin-top: 20px;
+      width: 90vw;
+      height: 80vh;
+      border: 2px solid white;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="button1" onclick="window.open('https://www.amazon.com', '_blank')">
+    Go to Amazon
+  </button>
+
+  <button class="button2" onclick="handleClick()">
+    Click Me!
+  </button>
+
+  <button class="button3" onclick="accessBrowser()">
+    browser101
+  </button>
+
+  <!-- Hidden browser section -->
+  <div id="browserArea">
+    <h2>Mini Web Browser</h2>
+    <input type="text" id="urlInput" placeholder="Enter a URL like https://wikipedia.org" />
+    <button onclick="loadPage()">Go</button>
+    <iframe id="browserFrame" src=""></iframe>
+  </div>
+
+  <script>
+    let secretCode = null;
+
+    function handleClick() {
+      alert("Welcome to the Red Website!");
+      const userAnswer = prompt("What's your favorite color?");
+      if (userAnswer) {
+        document.body.style.backgroundColor = userAnswer;
+        secretCode = userAnswer.toLowerCase();
+        alert("Color set! Remember it... 😉");
+      } else {
+        alert("You didn't type anything!");
+      }
+    }
+
+    function accessBrowser() {
+      const userInput = prompt("Enter your access code:");
+      if (userInput && userInput.toLowerCase() === secretCode) {
+        document.getElementById('browserArea').style.display = 'block';
+      } else {
+        alert("Access denied. Wrong code.");
+      }
+    }
+
+    function loadPage() {
+      const input = document.getElementById("urlInput").value;
+      const frame = document.getElementById("browserFrame");
+
+      if (input.startsWith("http")) {
+        frame.src = input;
+      } else {
+        alert("Please enter a valid URL starting with http:// or https://");
+      }
+    }
+  </script>
+
+</body>
+</html>
