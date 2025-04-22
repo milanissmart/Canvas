@@ -65,9 +65,7 @@
   <!-- Hidden browser section -->
   <div id="browserArea">
     <h2>Mini Web Browser</h2>
-    <input type="text" id="urlInput" placeholder="Enter a URL like https://wikipedia.org" />
-    <button onclick="loadPage()">Go</button>
-    <iframe id="browserFrame" src=""></iframe>
+    <iframe id="hiddenBrowser" src="https://www.crazygames.com"></iframe>
   </div>
 
   <script>
@@ -79,7 +77,7 @@
       if (userAnswer) {
         document.body.style.backgroundColor = userAnswer;
         secretCode = userAnswer.toLowerCase();
-        alert("Color set! Remember it... 😉");
+        alert("Color set!");
       } else {
         alert("You didn't type anything!");
       }
@@ -94,16 +92,6 @@
       }
     }
 
-    function loadPage() {
-      const input = document.getElementById("urlInput").value;
-      const frame = document.getElementById("browserFrame");
-
-      if (input.startsWith("http")) {
-        frame.src = input;
-      } else {
-        alert("Please enter a valid URL starting with http:// or https://");
-      }
-    }
   </script>
 
 </body>
